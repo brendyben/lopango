@@ -1,0 +1,31 @@
+{
+  "quittances": {
+    "BAN": 14,
+    "BAR": 10,
+    "BUM": 18,
+    "GOM": 47,
+    "KAL": 33,
+    "KSV": 22,
+    "KIM": 54,
+    "KIN": 21,
+    "KTM": 15,
+    "KIS": 22,
+    "LEM": 31,
+    "LIM": 38,
+    "LIN": 12,
+    "MAK": 19,
+    "MAL": 4,
+    "MAS": 41,
+    "MAT": 28,
+    "MNG": 18,
+    "NJI": 37,
+    "NGB": 14,
+    "NGA": 52,
+    "NGI": 11,
+    "NSE": 8,
+    "SEL": 24
+  },
+  "biens": 10,
+  "paiements": 6,
+  "utilisateurs": 34
+}

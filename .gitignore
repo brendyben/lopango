@@ -1,0 +1,22 @@
+# Fichier d'environnement (ne jamais committer)
+.env
+
+# Données JSON (persistées via Docker Volume)
+# Décommenter si vous ne voulez pas versionner les données
+# data/*.json
+
+# Logs
+*.log
+logs/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# ZIPs de livraison
+*.zip

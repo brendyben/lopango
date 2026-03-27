@@ -1,0 +1,68 @@
+# ════════════════════════════════════════════════════════════
+# LOPANGO — Configuration Apache
+# public/.htaccess
+# ════════════════════════════════════════════════════════════
+
+Options -Indexes
+Options -MultiViews
+
+# ── URL REWRITING ─────────────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /lopango/public/
+
+    # Réécrire /lopango/public/biens → index.php?page=biens
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([a-zA-Z_]+)/?$ index.php?page=$1 [QSA,L]
+
+    # Accès direct login/logout
+    RewriteRule ^login$  login.php  [L]
+    RewriteRule ^logout$ logout.php [L]
+</IfModule>
+
+# ── SÉCURITÉ ──────────────────────────────────────────────────────────────
+# Bloquer accès aux fichiers sensibles
+<FilesMatch "\.(json|log|md|sql|sh|bak)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# En-têtes de sécurité
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── CACHE ASSETS ──────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css                  "access plus 1 month"
+    ExpiresByType application/javascript    "access plus 1 month"
+    ExpiresByType image/png                 "access plus 1 year"
+    ExpiresByType image/svg+xml             "access plus 1 year"
+    ExpiresByType application/json          "access plus 0 seconds"
+</IfModule>
+
+# ── PHP CONFIG ────────────────────────────────────────────────────────────
+<IfModule mod_php8.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 60
+    php_value session.cookie_httponly 1
+    php_value session.use_strict_mode 1
+</IfModule>
+
+# ── PROTECTION DOSSIER DATA ───────────────────────────────────────────────
+# Le dossier data/ est hors de public/ donc déjà inaccessible.
+# Si vous placez data/ dans public/, ajoutez :
+# <Directory "data">
+#     Order Allow,Deny
+#     Deny from all
+# </Directory>
+
+# ── PAGE D'ERREUR ─────────────────────────────────────────────────────────
+ErrorDocument 404 /lopango/public/index.php
+ErrorDocument 403 /lopango/public/login.php

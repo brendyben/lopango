@@ -1,0 +1,176 @@
+[
+  {
+    "id": "USR-001", "nom": "KABILA Emile", "code": "AGT-001",
+    "role": "agent", "commune": "GOM", "email": "kabila.emile@lopango.cd",
+    "password_hash": "", "password_plain": "agent001",
+    "actif": true, "date_creation": "2025-01-01", "score": 94, "quittances": 47, "montant": 4820000
+  },
+  {
+    "id": "USR-002", "nom": "MBEKI Sandra", "code": "AGT-002",
+    "role": "agent", "commune": "GOM", "email": "mbeki.sandra@lopango.cd",
+    "password_hash": "", "password_plain": "agent002",
+    "actif": true, "date_creation": "2025-01-01", "score": 88, "quittances": 38, "montant": 3920000
+  },
+  {
+    "id": "USR-003", "nom": "TSHISEKEDI Paul", "code": "AGT-003",
+    "role": "agent", "commune": "GOM", "email": "tshisekedi.paul@lopango.cd",
+    "password_hash": "", "password_plain": "agent003",
+    "actif": false, "date_creation": "2025-01-01", "score": 71, "quittances": 21, "montant": 2140000
+  },
+  {
+    "id": "USR-004", "nom": "LUKUSA Bernadette", "code": "AGT-004",
+    "role": "agent", "commune": "GOM", "email": "lukusa.bernadette@lopango.cd",
+    "password_hash": "", "password_plain": "agent004",
+    "actif": true, "date_creation": "2025-01-01", "score": 85, "quittances": 32, "montant": 3280000
+  },
+  {
+    "id": "USR-011", "nom": "Service Habitat Bandalungwa", "code": "HAB-BAN",
+    "role": "habitat", "commune": "BAN", "email": "habitat.ban@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-ban",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-012", "nom": "Service Habitat Barumbu", "code": "HAB-BAR",
+    "role": "habitat", "commune": "BAR", "email": "habitat.bar@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-bar",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-013", "nom": "Service Habitat Bumbu", "code": "HAB-BUM",
+    "role": "habitat", "commune": "BUM", "email": "habitat.bum@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-bum",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-010", "nom": "Service Habitat Gombe", "code": "HAB-GOM",
+    "role": "habitat", "commune": "GOM", "email": "habitat.gom@lopango.cd",
+    "password_hash": "", "password_plain": "habitat2025",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-014", "nom": "Service Habitat Kalamu", "code": "HAB-KAL",
+    "role": "habitat", "commune": "KAL", "email": "habitat.kal@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-kal",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-015", "nom": "Service Habitat Kasa-Vubu", "code": "HAB-KSV",
+    "role": "habitat", "commune": "KSV", "email": "habitat.ksv@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-ksv",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-016", "nom": "Service Habitat Kimbanseke", "code": "HAB-KIM",
+    "role": "habitat", "commune": "KIM", "email": "habitat.kim@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-kim",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-017", "nom": "Service Habitat Kinshasa", "code": "HAB-KIN",
+    "role": "habitat", "commune": "KIN", "email": "habitat.kin@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-kin",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-018", "nom": "Service Habitat Kintambo", "code": "HAB-KTM",
+    "role": "habitat", "commune": "KTM", "email": "habitat.ktm@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-ktm",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-019", "nom": "Service Habitat Kisenso", "code": "HAB-KIS",
+    "role": "habitat", "commune": "KIS", "email": "habitat.kis@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-kis",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-021", "nom": "Service Habitat Lemba", "code": "HAB-LEM",
+    "role": "habitat", "commune": "LEM", "email": "habitat.lem@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-lem",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-022", "nom": "Service Habitat Limete", "code": "HAB-LIM",
+    "role": "habitat", "commune": "LIM", "email": "habitat.lim@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-lim",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-023", "nom": "Service Habitat Lingwala", "code": "HAB-LIN",
+    "role": "habitat", "commune": "LIN", "email": "habitat.lin@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-lin",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-024", "nom": "Service Habitat Makala", "code": "HAB-MAK",
+    "role": "habitat", "commune": "MAK", "email": "habitat.mak@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-mak",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-025", "nom": "Service Habitat Maluku", "code": "HAB-MAL",
+    "role": "habitat", "commune": "MAL", "email": "habitat.mal@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-mal",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-026", "nom": "Service Habitat Masina", "code": "HAB-MAS",
+    "role": "habitat", "commune": "MAS", "email": "habitat.mas@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-mas",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-027", "nom": "Service Habitat Matete", "code": "HAB-MAT",
+    "role": "habitat", "commune": "MAT", "email": "habitat.mat@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-mat",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-028", "nom": "Service Habitat Mont-Ngafula", "code": "HAB-MNG",
+    "role": "habitat", "commune": "MNG", "email": "habitat.mng@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-mng",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-029", "nom": "Service Habitat N'Djili", "code": "HAB-NJI",
+    "role": "habitat", "commune": "NJI", "email": "habitat.nji@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-nji",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-030", "nom": "Service Habitat Ngaba", "code": "HAB-NGB",
+    "role": "habitat", "commune": "NGB", "email": "habitat.ngb@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-ngb",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-031", "nom": "Service Habitat Ngaliema", "code": "HAB-NGA",
+    "role": "habitat", "commune": "NGA", "email": "habitat.nga@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-nga",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-032", "nom": "Service Habitat Ngiri-Ngiri", "code": "HAB-NGI",
+    "role": "habitat", "commune": "NGI", "email": "habitat.ngi@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-ngi",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-033", "nom": "Service Habitat N'Sele", "code": "HAB-NSE",
+    "role": "habitat", "commune": "NSE", "email": "habitat.nse@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-nse",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-034", "nom": "Service Habitat Selembao", "code": "HAB-SEL",
+    "role": "habitat", "commune": "SEL", "email": "habitat.sel@lopango.cd",
+    "password_hash": "", "password_plain": "habitat-sel",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  },
+  {
+    "id": "USR-020", "nom": "Dir. Impôts Locatifs", "code": "HVK-IRL-001",
+    "role": "hvk", "commune": null, "email": "irl@hvk.kinshasa.cd",
+    "password_hash": "", "password_plain": "hvk2025",
+    "actif": true, "date_creation": "2025-01-01", "score": null, "quittances": 0, "montant": 0
+  }
+]

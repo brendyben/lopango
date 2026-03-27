@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+
+  # ── APPLICATION LOPANGO ──────────────────────────────────────────────────
+  app:
+    build: .
+    container_name: lopango_app
+    restart: unless-stopped
+    ports:
+      - "80"
+    environment:
+      APP_ENV:  production
+      APP_URL:  ${APP_URL:-https://lopango.bakapdatalabs.com}
+      DB_HOST:  db
+      DB_NAME:  ${DB_NAME:-lopango}
+      DB_USER:  ${DB_USER:-lopango}
+      DB_PASS:  ${DB_PASS:-changeme}
+    volumes:
+      # Persistance des données JSON jusqu'à migration MySQL complète
+      - lopango_data:/var/www/html/data
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - lopango_net
+
+  # ── BASE DE DONNÉES MYSQL ─────────────────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: lopango_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE:      ${DB_NAME:-lopango}
+      MYSQL_USER:          ${DB_USER:-lopango}
+      MYSQL_PASSWORD:      ${DB_PASS:-changeme}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS:-rootchangeme}
+    volumes:
+      - lopango_mysql:/var/lib/mysql
+      # Le script migration.sql est exécuté automatiquement au premier démarrage
+      - ./migration.sql:/docker-entrypoint-initdb.d/migration.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - lopango_net
+
+volumes:
+  lopango_data:
+    # Données JSON persistantes entre les redéploiements
+    driver: local
+  lopango_mysql:
+    # Données MySQL persistantes
+    driver: local
+
+networks:
+  lopango_net:
+    driver: bridge
