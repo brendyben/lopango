@@ -3,6 +3,32 @@
   </div><!-- /main-body -->
 </div><!-- /app -->
 
+<!-- ══════════════════════════════════════ MOBILE BOTTOM NAV -->
+<?php
+$currentPg  = current_page();
+$navItems   = auth_nav_items();
+// Prendre max 4 items pour la nav mobile
+$mobileNav  = array_slice($navItems, 0, 4);
+$pendingCount = count(array_filter(db_get_paiements(auth_commune()), fn($p) => $p['statut'] === 'pending'));
+?>
+<nav class="mobile-nav">
+  <?php foreach ($mobileNav as $item):
+    $isActive = ($currentPg === $item['id']);
+    $badge = '';
+    if (isset($item['badge']) && $item['badge'] === 'pending' && $pendingCount > 0) {
+        $badge = '<span class="mobile-nav-badge">' . $pendingCount . '</span>';
+    }
+  ?>
+  <a href="<?= lp_h(BASE_URL . '/index.php' . $item['url']) ?>"
+     class="mobile-nav-item <?= $isActive ? 'active' : '' ?>"
+     style="position:relative">
+    <?= $badge ?>
+    <span class="nav-icon"><?= $item['icon'] ?></span>
+    <span class="nav-label"><?= lp_h(mb_substr($item['label'], 0, 8)) ?></span>
+  </a>
+  <?php endforeach; ?>
+</nav>
+
 <!-- ══════════════════════════════════════ TOAST CONTAINER -->
 <div id="toast-container"></div>
 
