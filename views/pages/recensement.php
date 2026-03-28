@@ -7,6 +7,10 @@ $errors    = [];
 $success   = null;
 $formData  = [];
 
+// Commune de l'agent — défini ICI pour être disponible dans le POST handler
+$agentCommune    = auth_commune() ?? 'GOM';
+$agentCommuneNom = db_get_commune($agentCommune)['nom'] ?? $agentCommune;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_verify()) {
         $errors[] = 'Token de sécurité invalide.';
@@ -69,12 +73,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'score_conformite' => 50,
                 ];
 
-                if (db_create_bien($bien)) {
-                    $success = $code;
-                    flash_set('success', "Bien {$code} enregistré avec succès.");
-                    $formData = []; // Reset form
-                } else {
-                    $errors[] = 'Erreur lors de l\'enregistrement. Veuillez réessayer.';
+                try {
+                    if (db_create_bien($bien)) {
+                        $success = $code;
+                        flash_set('success', "Bien {$code} enregistré avec succès.");
+                        $formData = []; // Reset form
+                    } else {
+                        $errors[] = 'Erreur lors de l\'enregistrement. Veuillez réessayer.';
+                    }
+                } catch (Exception $e) {
+                    $errors[] = 'Erreur BD : ' . $e->getMessage();
                 }
             }
         }
@@ -82,9 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Code prévisuel (JS ou POST)
-$agentCommune    = auth_commune() ?? 'GOM';
-$agentCommuneNom = db_get_commune($agentCommune)['nom'] ?? $agentCommune;
-$communeDefaut   = $agentCommune; // Toujours la commune de l'agent — non modifiable
+$communeDefaut = $agentCommune; // Toujours la commune de l'agent — non modifiable
 
 $previewCode = isset($formData['commune']) ? lp_gen_code(
     $agentCommune,           // ← commune forcée côté serveur
@@ -345,7 +351,7 @@ function updatePreview() {
   if (display) display.textContent = code;
 
   // QR
-  if (typeof LopangoQR !== 'undefined') LopangoQR.draw('qr-preview', code, 112);
+  if (typeof LopangoQR !== 'undefined') LopangoQR.draw('qr-preview', code, 220);
 
   // Détails
   const details = document.getElementById('code-details');
