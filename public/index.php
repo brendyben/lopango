@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 /**
  * LOPANGO — Point d'Entrée Principal (Router)
  * public/index.php
