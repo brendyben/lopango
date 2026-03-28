@@ -79,6 +79,7 @@ function db_get_biens(?string $commune = null, ?string $statut = null): array {
     // Normaliser commune_code → commune pour compatibilité
     return array_map(function($b) {
         $b['commune'] = $b['commune_code'] ?? $b['commune'] ?? '';
+        $b['loyer']   = $b['loyer_usd']   ?? $b['loyer']   ?? 0;
         return $b;
     }, $rows);
 }
@@ -91,7 +92,10 @@ function db_get_bien(string $id): ?array {
     $stmt = db_pdo()->prepare('SELECT * FROM biens WHERE id=?');
     $stmt->execute([$id]);
     $b = $stmt->fetch();
-    if ($b) $b['commune'] = $b['commune_code'] ?? '';
+    if ($b) {
+        $b['commune'] = $b['commune_code'] ?? '';
+        $b['loyer']   = $b['loyer_usd']   ?? 0; // normalisation
+    }
     return $b ?: null;
 }
 
@@ -105,15 +109,20 @@ function db_create_bien(array $bien): bool {
         json_write('compteurs', $compteurs);
         return json_write('biens', $biens);
     }
-    $stmt = db_pdo()->prepare('INSERT INTO biens (id,adresse,commune_code,quartier,avenue,parcelle,unite,type,proprio,proprio_tel,loyer_usd,statut,locataire,locataire_tel,observations,score_conformite,agent_recenseur,date_creation) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-    return $stmt->execute([
-        $bien['id'], $bien['adresse'], $bien['commune'], $bien['quartier'] ?? '',
-        $bien['avenue'], $bien['parcelle'], $bien['unite'], $bien['type'],
-        $bien['proprio'], $bien['proprio_tel'] ?? '', $bien['loyer'] ?? 0,
-        $bien['statut'], $bien['locataire'] ?? '', $bien['locataire_tel'] ?? '',
-        $bien['observations'] ?? '', $bien['score_conformite'] ?? 50,
-        $bien['agent_recenseur'] ?? '', $bien['date_creation'] ?? date('Y-m-d'),
-    ]);
+    try {
+        $stmt = db_pdo()->prepare('INSERT INTO biens (id,adresse,commune_code,quartier,avenue,parcelle,unite,type,proprio,proprio_tel,loyer_usd,statut,locataire,locataire_tel,observations,score_conformite,agent_recenseur,date_creation) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        return $stmt->execute([
+            $bien['id'], $bien['adresse'], $bien['commune'], $bien['quartier'] ?? '',
+            $bien['avenue'], $bien['parcelle'], $bien['unite'], $bien['type'],
+            $bien['proprio'], $bien['proprio_tel'] ?? '', $bien['loyer'] ?? 0,
+            $bien['statut'], $bien['locataire'] ?? '', $bien['locataire_tel'] ?? '',
+            $bien['observations'] ?? '', $bien['score_conformite'] ?? 50,
+            $bien['agent_recenseur'] ?? '', $bien['date_creation'] ?? date('Y-m-d'),
+        ]);
+    } catch (Exception $e) {
+        error_log('db_create_bien error: ' . $e->getMessage());
+        return false;
+    }
 }
 
 function db_update_bien(string $id, array $data): bool {
