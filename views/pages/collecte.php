@@ -403,7 +403,9 @@ function loadJsQR(cb) {
 }
 
 function openScanner() {
-  document.getElementById('qr-modal').classList.add('open');
+  var modal = document.getElementById('qr-modal');
+  modal.style.display = 'flex';  // forcer — override l'inline style:none
+  modal.classList.add('open');
   document.getElementById('scan-ok').classList.remove('visible');
   document.getElementById('manual-input').value = '';
   setStatus('Initialisation de la caméra…');
@@ -412,7 +414,9 @@ function openScanner() {
 
 function closeScanner() {
   stopCamera();
-  document.getElementById('qr-modal').classList.remove('open');
+  var modal = document.getElementById('qr-modal');
+  modal.style.display = 'none';
+  modal.classList.remove('open');
 }
 
 function startCamera() {
