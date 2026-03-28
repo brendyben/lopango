@@ -213,7 +213,7 @@ $irlTheo = $preBien ? lp_calc_irl($preBien['loyer'] ?? 0, $preBien['type']) : 0;
             <div class="form-group">
               <label class="form-label">Montant IRL (FC) *</label>
               <input class="form-input" type="number" name="montant" id="inp-montant"
-                     min="1" step="100" placeholder="52 500" required
+                     min="1" step="1" placeholder="52 500" required
                      value="<?= $irlTheo ?: '' ?>"
                      style="font-family:var(--mono);font-size:15px;font-weight:600">
             </div>
@@ -368,7 +368,7 @@ const BIENS_LOCAL = {$biensJson};
 const TAUX_FC     = {$TAUX_FC};
 const TAUX_IRL    = {$TAUX_IRL_JSON};
 " . ($quittance ? "
-if (typeof LopangoQR !== 'undefined') LopangoQR.draw('qr-quittance', " . json_encode($qrNum) . ", 100);
+if (typeof LopangoQR !== 'undefined') LopangoQR.draw('qr-quittance', " . json_encode($qrNum) . ", 180);
 " : "") . "
 
 // ── LOOKUP BIEN ───────────────────────────────────────────────────────────
@@ -396,7 +396,7 @@ var _jsqrLoaded = false;
 function loadJsQR(cb) {
   if (window.jsQR) { cb(); return; }
   var s = document.createElement('script');
-  s.src = '/assets/js/jsqr.min.js';
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js';
   s.onload  = function(){ _jsqrLoaded = true; cb(); };
   s.onerror = function(){ setStatus('Impossible de charger le scanner. Utilisez la saisie manuelle.'); };
   document.head.appendChild(s);
