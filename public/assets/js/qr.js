@@ -12,6 +12,10 @@ const LopangoQR = (() => {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
 
+    // Supprimer l'image précédente si elle existe
+    const existing = document.getElementById(canvasId + '_img');
+    if (existing) existing.remove();
+
     // Créer une image à la place du canvas
     const img = document.createElement('img');
     img.width  = size;
@@ -19,19 +23,7 @@ const LopangoQR = (() => {
     img.alt    = data;
     img.style.cssText = canvas.style.cssText;
     img.style.display = 'block';
-
-    // API qrserver.com — génère un vrai QR code
-    // color=0f4c35 = vert Lopango, bgcolor=ffffff = fond blanc
-    const url = 'https://api.qrserver.com/v1/create-qr-code/'
-      + '?size=' + size + 'x' + size
-      + '&data=' + encodeURIComponent(data)
-      + '&color=0f4c35'
-      + '&bgcolor=ffffff'
-      + '&margin=4'
-      + '&format=png';
-
-    img.src = url;
-    img.id  = canvasId + '_img';
+    img.id = canvasId + '_img';
 
     // Fallback si API indisponible
     img.onerror = function() {
