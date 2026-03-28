@@ -359,7 +359,7 @@ $biensJson = json_encode(array_map(fn($b) => [
     'id'=>$b['id'],'adresse'=>$b['adresse'],'proprio'=>$b['proprio'],
     'type'=>$b['type'],'statut'=>$b['statut'],'loyer'=>$b['loyer']??0,
 ], db_get_biens(auth_commune())));
-$TAUX_FC = 2750;
+$TAUX_FC = 2250;
 $TAUX_IRL_JSON = json_encode(TAUX_IRL);
 $qrNum = $quittance['num_quittance'] ?? '';
 

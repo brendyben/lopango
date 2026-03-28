@@ -71,7 +71,7 @@ function lp_gen_quittance_num(string $commune): string {
  */
 function lp_calc_irl(int|float $loyer_usd, string $type = 'Habitation'): int {
     $taux    = TAUX_IRL[$type] ?? 15;
-    $taux_fc = 2750; // Taux de change USD → FC (approximatif)
+    $taux_fc = 2250; // Taux de change USD → FC (approximatif)
     return (int)round($loyer_usd * $taux_fc * $taux / 100);
 }
 
