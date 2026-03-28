@@ -1,13 +1,10 @@
 /**
- * LOPANGO — Générateur QR Code RÉEL
- * Utilise l'API qrserver.com pour générer de vrais QR codes scannabes
- * Fallback canvas si offline
+ * LOPANGO — Générateur QR Code
+ * Appelle /public/qr.php pour générer un vrai QR code scannable
  */
 
 const LopangoQR = (() => {
 
-  // ── VRAI QR CODE via API ────────────────────────────────────────────────
-  // Remplace le canvas par une image générée par l'API
   function draw(canvasId, data, size = 96) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -16,61 +13,58 @@ const LopangoQR = (() => {
     const existing = document.getElementById(canvasId + '_img');
     if (existing) existing.remove();
 
-    // Créer une image à la place du canvas
+    if (!data || data.includes('XXXX') || data.includes('000-U')) {
+      // Données incomplètes — afficher placeholder
+      canvas.style.display = 'block';
+      canvas.width = size; canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#f0f6f0';
+      ctx.fillRect(0, 0, size, size);
+      ctx.strokeStyle = '#c8d8c8';
+      ctx.strokeRect(2, 2, size-4, size-4);
+      ctx.fillStyle = '#6a8a6a';
+      ctx.font = 'bold ' + Math.floor(size/8) + 'px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('QR', size/2, size/2 + 4);
+      return;
+    }
+
+    // Créer une image pointant vers le générateur PHP
     const img = document.createElement('img');
+    img.id     = canvasId + '_img';
     img.width  = size;
     img.height = size;
     img.alt    = data;
-    img.style.cssText = canvas.style.cssText;
     img.style.display = 'block';
-    img.id = canvasId + '_img';
+    img.style.borderRadius = '4px';
 
-    // Fallback si API indisponible
+    // URL du générateur PHP local
+    img.src = '/qr.php?data=' + encodeURIComponent(data) + '&size=' + size;
+
     img.onerror = function() {
-      drawFallback(canvasId, data, size);
+      // Fallback si PHP indisponible
+      canvas.style.display = 'block';
+      canvas.width = size; canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff'; ctx.fillRect(0,0,size,size);
+      ctx.strokeStyle = '#0f4c35'; ctx.lineWidth = 2;
+      ctx.strokeRect(2,2,size-4,size-4);
+      ctx.fillStyle = '#0f4c35';
+      ctx.font = Math.floor(size/10) + 'px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(data.substring(0,12), size/2, size/2);
       img.remove();
     };
 
-    // Remplacer le canvas par l'image
-    canvas.parentNode.insertBefore(img, canvas);
+    // Insérer après le canvas
     canvas.style.display = 'none';
+    canvas.parentNode.insertBefore(img, canvas.nextSibling);
   }
 
-  // ── FALLBACK : vrai QR code généré localement (si offline) ──────────────
-  function drawFallback(canvasId, data, size) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    canvas.style.display = 'block';
-    canvas.width  = size;
-    canvas.height = size;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, size, size);
-    // Message offline
-    ctx.fillStyle = '#0f4c35';
-    ctx.font = 'bold ' + Math.floor(size/10) + 'px monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText('QR', size/2, size/2 - 4);
-    ctx.font = Math.floor(size/14) + 'px monospace';
-    ctx.fillText('offline', size/2, size/2 + 12);
-    // Bordure
-    ctx.strokeStyle = '#0f4c35';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(2, 2, size-4, size-4);
-  }
-
-  // ── GÉNÉRER UNE URL QR (pour impression) ──────────────────────────────
   function toDataURL(data, size = 200) {
-    return 'https://api.qrserver.com/v1/create-qr-code/'
-      + '?size=' + size + 'x' + size
-      + '&data=' + encodeURIComponent(data)
-      + '&color=0f4c35'
-      + '&bgcolor=ffffff'
-      + '&margin=4'
-      + '&format=png';
+    return '/qr.php?data=' + encodeURIComponent(data) + '&size=' + size;
   }
 
-  // ── AUTO-INIT ─────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('canvas[data-qr]').forEach(canvas => {
       const data = canvas.dataset.qr;
