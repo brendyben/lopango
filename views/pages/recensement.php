@@ -337,7 +337,7 @@ $previewCode = isset($formData['commune']) ? lp_gen_code(
 
 <?php
 $pageScripts = "
-const TAUX_FC = 2750;
+const TAUX_FC = 2250;
 const TAUX_IRL = " . json_encode(TAUX_IRL) . ";
 
 function updatePreview() {
