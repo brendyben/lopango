@@ -396,7 +396,7 @@ var _jsqrLoaded = false;
 function loadJsQR(cb) {
   if (window.jsQR) { cb(); return; }
   var s = document.createElement('script');
-  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js';
+  s.src = '/assets/js/jsqr.min.js';
   s.onload  = function(){ _jsqrLoaded = true; cb(); };
   s.onerror = function(){ setStatus('Impossible de charger le scanner. Utilisez la saisie manuelle.'); };
   document.head.appendChild(s);
