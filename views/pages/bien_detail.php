@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
       <a href="<?= url('biens', ['commune'=>$bien['commune']]) ?>" class="btn btn-secondary btn-sm">← Retour</a>
       <?php if (auth_is_agent() || auth_is_habitat()): ?>
       <a href="<?= url('collecte', ['bien'=>$bien['id']]) ?>" class="btn btn-gold btn-sm">🎫 Collecte IRL</a>
+      <a href="<?= url('contrat_bail') ?>&id=<?= lp_h($bien['id']) ?>" target="_blank" class="btn btn-secondary btn-sm">📋 Contrat de Bail</a>
       <?php endif; ?>
       <button onclick="window.print()" class="btn btn-secondary btn-sm">🖨 Imprimer</button>
     </div>

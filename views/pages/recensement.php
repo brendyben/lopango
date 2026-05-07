@@ -124,6 +124,7 @@ $previewCode = isset($formData['commune']) ? lp_gen_code(
       <div style="margin-top:8px;display:flex;gap:8px">
         <a href="<?= url('bien_detail', ['id'=>$success]) ?>" class="btn btn-primary btn-sm">Voir la fiche</a>
         <a href="<?= url('collecte', ['bien'=>$success]) ?>" class="btn btn-gold btn-sm">🎫 Émettre une quittance</a>
+        <a href="<?= url('contrat_bail') ?>&id=<?= lp_h($success) ?>" target="_blank" class="btn btn-secondary btn-sm">📋 Contrat de Bail</a>
       </div>
     </div>
   </div>

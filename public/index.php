@@ -49,10 +49,19 @@ $viewMap = [
     'projections' => 'projections',
     'alertes'     => 'alertes',
     'rapport_hvk' => 'rapport_hvk',
+    // Contrat de bail (agent + habitat + hvk)
+    'contrat_bail' => 'contrat_bail',
 ];
 
 $viewFile = $viewMap[$page] ?? null;
 $viewPath = $viewFile ? VIEWS_PATH . '/pages/' . $viewFile . '.php' : null;
+
+// Pages standalone (sans layout header/sidebar/footer)
+$standalonePages = ['contrat_bail'];
+if (in_array($page, $standalonePages) && $viewPath && file_exists($viewPath)) {
+    include $viewPath;
+    exit;
+}
 
 // ── RENDU ─────────────────────────────────────────────────────────────────
 if ($viewPath && file_exists($viewPath)) {
