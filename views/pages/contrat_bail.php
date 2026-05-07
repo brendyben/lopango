@@ -5,7 +5,7 @@
  * URL : /index.php?page=contrat_bail&id=KIN-GOM-LUTU-120-U01
  */
 // Accessible aux agents terrain, habitat et HVK
-if (!auth_logged()) { redirect(url('login')); }
+if (!isset($_SESSION['user_id'])) { redirect(BASE_URL . '/login.php'); }
 
 $bienId = $_GET['id'] ?? '';
 $bien   = $bienId ? db_get_bien($bienId) : null;
