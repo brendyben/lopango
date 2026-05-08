@@ -16,7 +16,7 @@ if (!$bien) {
 }
 
 // Vérification commune
-if (auth_role() !== ROLE_HVK && ($bien['commune'] ?? $bien['commune_code'] ?? ''!=='' && ($bien['commune'] ?? $bien['commune_code'] ?? '') !== auth_commune()) {
+if (auth_role() === ROLE_AGENT && ($bien['commune'] ?? $bien['commune_code'] ?? '') !== auth_commune()) {
     echo '<div class="alert alert-danger">Accès non autorisé.</div>';
     return;
 }
